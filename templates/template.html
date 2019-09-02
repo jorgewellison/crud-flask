@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogoteca</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <!-- usando flask para buscar a pasta static_-->
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>{{ titulo }}</h1> <!--diretiva para deixar o conteudo dinamico-->
+    </div>
+
+    {% block conteudo %}{% endblock %}
+
+</div>
+
+
+</body>
+</html>
