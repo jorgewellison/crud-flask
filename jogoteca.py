@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect #importando do pacote flask a classe Flask
+from flask import Flask, render_template, request, redirect, session, flash  # importando do pacote flask a classe Flask
 
 app = Flask(__name__) #app recebe o objeto instanciado, que executa o modulo __name__
+app.secret_key = 'dsc'
 
 class Jogo:
     def __init__(self, nome, categoria, console):
@@ -38,8 +39,11 @@ def login():
 @app.route('/autenticar', methods=['POST',])
 def autenticar():
     if 'mestra' == request.form['senha']:
+        session['usuario_logado'] = request.form['usuario'] #dicionario com valores, flask guarda através de cookie a informação do usuario
+        flash(request.form['usuario'] + ' logou com sucesso!') #mensagem flash, mensagem rápida
         return redirect('/')
     else:
+        flash('Não logado, tente novamente!')
         return redirect('/login')
 
 app.run(debug=True) #rodando o app
